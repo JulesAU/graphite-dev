@@ -1,0 +1,6 @@
+<uwsgi>
+    <plugins>http,python</plugins>
+    <socket>/tmp/whisperer.sock</socket>
+    <uid>www-data</uid>
+    <module>start</module>
+</uwsgi>
