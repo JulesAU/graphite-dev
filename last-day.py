@@ -1,19 +1,5 @@
 #!/usr/bin/python
-"""Copyright 2008 Orbitz WorldWide
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License."""
-
-import sys
 import time
 import random
 from socket import socket
@@ -33,10 +19,10 @@ for sysi in xrange(1,5000):
     daybefore = at - 24*60*60
 
     values = [0,0,0]
+    
+    lines = []
 
     while at > daybefore:
-      lines = []
-
       values[0] += random.random() - 0.5
       values[1] += random.random() - 0.5
       values[2] += random.random() - 0.5
@@ -45,12 +31,9 @@ for sysi in xrange(1,5000):
       lines.append("system%d.loadavg_5min %s %d" % (sysi, values[1],at))
       lines.append("system%d.loadavg_15min %s %d" % (sysi, values[2],at))
 
-      message = '\n'.join(lines) + '\n' #all lines must end in a newline
-      print "sending message\n"
-      print '-' * 80
-      print message
-      print
-
-      sock.sendall(message)
-
       at -= 30
+
+    message = '\n'.join(lines) + '\n' #all lines must end in a newline
+    sock.sendall(message)
+
+    print sysi

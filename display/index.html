@@ -11,7 +11,7 @@
 
 		$.ajax({
 //			url: 'http://localhost:85/get?metric=system/loadavg_1min&metric=system/loadavg_5min&metric=system/loadavg_15min',
-			url: '/get/get?metric=system/loadavg_1min&metric=system/loadavg_5min&metric=system/loadavg_15min',
+			url: '/get/get?metric=system1/loadavg_1min&metric=system1/loadavg_5min&metric=system1/loadavg_15min',
 			dataType: 'jsonp',
 			jsonpCallback: 'callback',
 			success: function(data) {
@@ -33,7 +33,8 @@
 					chartData[name] = values;
 				});
 
-				new Ico.LineGraph(element, chartData, options);
+//				new Ico.LineGraph(element, chartData, options);
+				new Ico.BarGraph(element, chartData, options);
 			}
 		});
 	});
